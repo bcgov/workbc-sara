@@ -1,7 +1,7 @@
 import React from 'react';
-import fileIcon from './icons/file-invoice.svg'
-import requestsIcon from './icons/pen-field.svg'
-import tempIcon from './icons/space-station-moon-construction.svg'
+import fileIcon from './icons/light/file-invoice.svg'
+import requestsIcon from './icons/light/pen-field.svg'
+import tempIcon from './icons/light/space-station-moon-construction.svg'
 
 function Home(){
     return(
