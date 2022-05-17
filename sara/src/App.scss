@@ -1,0 +1,32 @@
+@import "@bcgov/bootstrap-theme/dist/scss/common";
+@import "~@bcgov/bootstrap-theme/dist/scss/common";
+@import "~@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css";
+$bcgov-font-path: "../node_modules/@bcgov/bootstrap-theme/dist/fonts/";
+
+.buttonImage{
+    max-width: 20%;
+    height: auto;
+    width: auto/9;
+}
+.buttonImageRequests{
+    max-width: 30%;
+    height: auto;
+    width: auto/9;
+}
+
+.buttonInfo{
+    font-size:small;
+}
+
+.buttonTitle{
+    padding-top: 1vh;
+}
+
+.row{
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+}
+
+.card-body{
+    padding: 0;
+}
