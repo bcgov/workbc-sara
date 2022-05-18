@@ -1,25 +1,13 @@
 import React, { useState, useEffect } from "react";
 import logo from './bcid-logo-rev-en.svg'
 import logoSmall from './bcid-symbol-rev.svg'
-import { KeycloakClient, KeycloakInitOptions } from '@react-keycloak/keycloak-ts'
-import MyCustomAdapter from './adapter.js'
-
-function initKeycloak(){
-  const keycloak = new KeycloakClient({
-    url: "https://dev.oidc.gov.bc.ca/auth/",
-    realm: '4piqfpfu',
-    clientId: 'web'
-  });
-  
-  const initialized = keycloak.init({
-    adapter: MyCustomAdapter,
-  });
-}
+import { useKeycloak } from '@react-keycloak/web';
+//import MyCustomAdapter from './adapter.js'
 
 function Header(){
   
-  const [permissions, setPermissions] = useState();
-  
+  //const [permissions, setPermissions] = useState();
+  const { keycloak, initialized } = useKeycloak();
   
 
     return(
@@ -55,7 +43,7 @@ function Header(){
             <li className="nav-item">
               {
                 <>
-                  {(!keycloak.authenticated) ?
+                  {(!keycloak.authenticated && initialized) ?
                     <a className="btn btn-bcgold" href="/loginLanding">Login</a>
                     :
                     <a className="btn btn-bcgold" href={`https://logontest7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${keycloak.createLogoutUrl({redirectUri: `${window.location.origin}/logoutSuccess`})}`}>Logout</a>
