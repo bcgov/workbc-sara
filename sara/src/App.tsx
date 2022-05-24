@@ -2,15 +2,13 @@ import React from 'react';
 import './App.scss';
 import Footer from './footer';
 import Header from './header';
-import Home from './home';
 import Keycloak from 'keycloak-js'
 import { ReactKeycloakProvider } from '@react-keycloak/web'
+import { BrowserRouter as Router } from 'react-router-dom';
+import Main from './Main';
 
-const keycloak = new Keycloak({
-  realm: process.env.REACT_APP_KEYCLOAK_REALM || "",
-  url: process.env.REACT_APP_KEYCLOAK_URL || "",
-  clientId: process.env.REACT_APP_KEYCLOAK_CLIENT_ID || "",
-})
+const keycloak = new Keycloak('./keycloak.json');
+
 
 const eventLogger = (event: unknown, error: unknown) => {
   console.log('onKeycloakEvent', event, error)
@@ -20,6 +18,10 @@ const tokenLogger = (tokens: unknown) => {
   console.log('onKeycloakTokens', tokens)
 }
 
+const keycloakProviderInitConfig = {
+ 
+}
+
 function App() {
   return (
     <React.StrictMode>
@@ -27,12 +29,13 @@ function App() {
         authClient={keycloak}
         onEvent={eventLogger}
         onTokens={tokenLogger}
+        initOptions={keycloakProviderInitConfig}
       >
-        <div className="App d-flex flex-column min-vh-100">
+        <Router>
           <Header />
-          <Home />
+          <Main />
           <Footer />
-        </div>
+        </Router>
       </ReactKeycloakProvider>
     </React.StrictMode>
   );

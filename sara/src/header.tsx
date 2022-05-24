@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import logo from './bcid-logo-rev-en.svg'
 import logoSmall from './bcid-symbol-rev.svg'
 import { useKeycloak } from '@react-keycloak/web';
-//import MyCustomAdapter from './adapter.js'
 
 function Header(){
   
-  //const [permissions, setPermissions] = useState();
+  const [permissions, setPermissions] = useState();
   const { keycloak, initialized } = useKeycloak();
+  console.log(keycloak);
   
 
     return(
@@ -31,10 +31,7 @@ function Header(){
             <div className="navbar-brand">
               SARA
             </div>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar" id="navbarNavAltMarkup">
               <div className="navbar-nav">
                 <a className="nav-item nav-link" href="/">Home</a>
               </div>
@@ -43,7 +40,7 @@ function Header(){
             <li className="nav-item">
               {
                 <>
-                  {(!keycloak.authenticated && initialized) ?
+                  {(true) ?
                     <a className="btn btn-bcgold" href="/loginLanding">Login</a>
                     :
                     <a className="btn btn-bcgold" href={`https://logontest7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${keycloak.createLogoutUrl({redirectUri: `${window.location.origin}/logoutSuccess`})}`}>Logout</a>
